@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" >
+
+<head th:replace="base :: headstuff">
+
+
+</head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+    <div class="jumbotron">
+
+
+        <p><a href="/add" class="btn btn-primary btn-lg" role="button">Send a Message</a></p><br/>
+<table>
+
+
+    <h3 th:each="message : ${messages}">
+        <p th:inline="text">[[${message.content}]]</p><br/>
+        <p th:inline="text">[[${message.sentBy}]]
+            [[${message.postedDate}]]</p>
+
+        <div th:if:src="${message.shot} != null">
+            <img th:src="${message.shot}" />
+            <hr/>
+        </div>
+
+        <a th:href="@{/view/{id} (id=${message.id})}">View</a>
+        <br/>
+        <br/>
+        <p>--------------------------------------------------------------------------------------------------------</p>
+
+
+    </h3>
+
+</table>
+
+</div>
+</div>
+<nav th:replace="base :: footer"></nav>
+<th:block th:replace="base :: jslinks"></th:block>
+</body>
+</html>
